@@ -65,32 +65,61 @@ object AuthLoginRequests extends ServicesConfiguration with BaseRequests {
        |""".stripMargin
   }
 
-//  private def authPayloadCISAgent(): String = {
-//    val CredIdLength = 16
-//    val credId       = alphanumeric.take(CredIdLength).mkString
-//
-//    s"""
-//       |{
-//       |  "confidenceLevel": 50,
-//       |  "affinityGroup": "Agent",
-//       |  "credentialStrength": "strong",
-//       |  "credId": "$credId",
-//       |  "credentialRole": "User",
-//       |  "excludeGnapToken": true,
-//       |  "enrolments": [
-//       |    {
-//       |      "key": "HMRC-CHAR-ORG",
-//       |      "identifiers": [
-//       |        {
-//       |          "key": "CHARID",
-//       |          "value": "#{charId}"
-//       |        }
-//       |      ],
-//       |      "state": "Activated"
-//       |    }
-//       |  ]
-//       |}
-//       |""".stripMargin
-//  }
+  //  private def authPayloadCISAgent(): String = {
+  //    val CredIdLength = 16
+  //    val credId       = alphanumeric.take(CredIdLength).mkString
+  //
+  //    s"""
+  //       |{
+  //       |  "confidenceLevel": 50,
+  //       |  "affinityGroup": "Agent",
+  //       |  "credentialStrength": "strong",
+  //       |  "credId": "$credId",
+  //       |  "credentialRole": "User",
+  //       |  "excludeGnapToken": true,
+  //       |  "enrolments": [
+  //       |    {
+  //       |      "key": "HMRC-CHAR-ORG",
+  //       |      "identifiers": [
+  //       |        {
+  //       |          "key": "CHARID",
+  //       |          "value": "#{charId}"
+  //       |        }
+  //       |      ],
+  //       |      "state": "Activated"
+  //       |    }
+  //       |  ]
+  //       |}
+  //       |""".stripMargin
+  //  }
+
+  def authPayloadSdlt(): String = {
+    val CredIdLength = 16
+    val credId = Random.alphanumeric.take(CredIdLength).mkString
+
+    s"""
+       |{
+       |  "confidenceLevel": 50,
+       |  "affinityGroup": "Agent",
+       |  "credentialStrength": "strong",
+       |  "credId": "$credId",
+       |  "credentialRole": "User",
+       |  "email": "user@test.com",
+       |  "excludeGnapToken": true,
+       |  "enrolments": [
+       |    {
+       |      "key": "IR-SDLT-ORG",
+       |      "identifiers": [
+       |        {
+       |          "key": "STORN",
+       |          "value": "123456"
+       |        }
+       |      ],
+       |      "state": "Activated"
+       |    }
+       |  ]
+       |}
+       |""".stripMargin
+  }
 
 }
